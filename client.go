@@ -3,23 +3,16 @@ package revego
 import (
 	"errors"
 	"net/http"
-	"sync"
 	"time"
 )
 
-var (
-	APIBaseURL     = "https://api.reve.com/v1/"
-	DefaultTimeout = 30 * time.Second
-)
+var APIBaseURL = "https://api.reve.com/v1/"
 
 type Client struct {
-	clientID    string
-	HTTPClient  *http.Client
-	APIKey      string
-	mu          sync.Mutex
-	apiBaseURL  string
-	tokenExpiry time.Time
-	Token       string
+	clientID   string
+	HTTPClient *http.Client
+	APIKey     string
+	APIBaseURL string
 }
 
 func NewClient(apiKey string) (*Client, error) {
@@ -27,14 +20,15 @@ func NewClient(apiKey string) (*Client, error) {
 		return nil, errors.New("API Key is missing")
 	}
 
-	return &Client{
-		APIKey: apiKey,
-		HTTPClient: &http.Client{
-			Timeout: DefaultTimeout,
-		},
-	}, nil
+	client := &Client{
+		APIKey:     apiKey,
+		APIBaseURL: APIBaseURL,
+		HTTPClient: &http.Client{Timeout: 60 * time.Second},
+	}
+
+	return client, nil
 }
 
 func (c *Client) SetBaseURL(url string) {
-	c.apiBaseURL = url
+	c.APIBaseURL = url
 }
