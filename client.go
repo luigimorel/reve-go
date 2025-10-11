@@ -28,7 +28,3 @@ func NewClient(apiKey string) (*Client, error) {
 
 	return client, nil
 }
-
-func (c *Client) SetBaseURL(url string) {
-	c.APIBaseURL = url
-}

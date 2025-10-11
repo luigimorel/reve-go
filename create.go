@@ -39,7 +39,7 @@ func (c *Client) CreateImage(
 	ctx context.Context,
 	req CreateImageRequest,
 ) (*CreateImageResponse, error) {
-	endpoint := c.apiBaseURL + "/image/create"
+	endpoint := c.APIBaseURL + "/image/create"
 	b, err := json.Marshal(&req)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
