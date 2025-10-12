@@ -12,8 +12,6 @@ import (
 type CreateImageRequest struct {
 	Prompt      string `json:"prompt"`
 	AspectRatio string `json:"aspect_ratio"`
-	Width       int    `json:"width"`
-	Height      int    `json:"height"`
 	Version     string `json:"version"`
 }
 
