@@ -22,12 +22,9 @@ func main() {
 		panic(err)
 	}
 
-	slog.Info("info", "base url", client.APIKey)
 	req := revego.CreateImageRequest{
 		Prompt:      "Create a cart",
 		AspectRatio: "16:9",
-		Width:       900,
-		Height:      900,
 	}
 
 	resp, err := client.CreateImage(context.Background(), req)
@@ -35,5 +32,5 @@ func main() {
 		panic(err)
 	}
 
-	slog.Debug("info", "image generated", resp)
+	slog.Debug("image generated", "resp", resp)
 }
