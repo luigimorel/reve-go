@@ -1,4 +1,4 @@
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
 github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
-github.com/luigimorel/reve-go v0.0.3 h1:Q9QOEreLrXK+nq7l2hqEMUq0n2HcKcoc4bTK36hAB3U=
-github.com/luigimorel/reve-go v0.0.3/go.mod h1:U39LRomPhGOIAXRreBc6VpZfqStYxNrpbW8jx7A87NY=
+github.com/luigimorel/reve-go v0.0.4 h1:tAUFn8QW/GWYAc8DBMXNSYQ2W2ybBFXxXKC+TkwtUjY=
+github.com/luigimorel/reve-go v0.0.4/go.mod h1:U39LRomPhGOIAXRreBc6VpZfqStYxNrpbW8jx7A87NY=
