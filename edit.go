@@ -26,9 +26,8 @@ func (c *Client) EditImage(ctx context.Context, req EditImageRequest) (*ImageRes
 	if err != nil {
 		return nil, fmt.Errorf("failed to send request with context: %w", err)
 	}
-	if err := SetHeaders(httpReq, c.APIKey); err != nil {
-		return nil, fmt.Errorf("failed to set headers: %w", err)
-	}
+
+	SetHeaders(httpReq, c.APIKey)
 
 	resp, err := c.HTTPClient.Do(httpReq)
 	if err != nil {

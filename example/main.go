@@ -32,5 +32,5 @@ func main() {
 		panic(err)
 	}
 
-	slog.Debug("image generated", "resp", resp)
+	slog.Info("image generated", "resp", resp)
 }
