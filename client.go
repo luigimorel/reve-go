@@ -9,7 +9,7 @@ import (
 var APIBaseURL = "https://api.reve.com/v1/"
 
 type Client struct {
-	clientID   string
+	ClientID   string
 	HTTPClient *http.Client
 	APIKey     string
 	APIBaseURL string

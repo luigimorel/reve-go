@@ -9,33 +9,23 @@ import (
 	"net/http"
 )
 
-type CreateImageRequest struct {
-	Prompt      string `json:"prompt"`
-	AspectRatio string `json:"aspect_ratio"`
-	Version     string `json:"version"`
+type EditImageRequest struct {
+	EditInstruction string `json:"edit_instruction"`
+	ReferenceImage  string `json:"reference_image"` // Base64 encoded image data
+	Version         string `json:"version"`
 }
 
-type ImageResponse struct {
-	Image            string `json:"image"`
-	ContentViolation bool   `json:"content_violation"`
-	RequestID        string `json:"request_id"`
-	Version          string `json:"version"`
-	CreditsUsed      int    `json:"credits_used"`
-	CreditsRemaining int    `json:"credits_remaining"`
-}
-
-func (c *Client) CreateImage(ctx context.Context, req CreateImageRequest) (*ImageResponse, error) {
-	endpoint := c.APIBaseURL + "/image/create"
+func (c *Client) EditImage(ctx context.Context, req EditImageRequest) (*ImageResponse, error) {
+	endpoint := c.APIBaseURL + "/image/edit"
 	b, err := json.Marshal(&req)
 	if err != nil {
-		return nil, fmt.Errorf("failed to marshal request: %w", err)
+		return nil, fmt.Errorf("failed to marshal the request: %w", err)
 	}
 
 	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, endpoint, bytes.NewReader(b))
 	if err != nil {
 		return nil, fmt.Errorf("failed to send request with context: %w", err)
 	}
-
 	if err := SetHeaders(httpReq, c.APIKey); err != nil {
 		return nil, fmt.Errorf("failed to set headers: %w", err)
 	}
@@ -57,7 +47,7 @@ func (c *Client) CreateImage(ctx context.Context, req CreateImageRequest) (*Imag
 
 	var out ImageResponse
 	if err := json.Unmarshal(body, &out); err != nil {
-		return &out, fmt.Errorf("failed to unmarshal response: %w", err)
+		return &out, fmt.Errorf("failed to unmarshal json response: %w", err)
 	}
 
 	return &out, nil
