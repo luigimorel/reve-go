@@ -32,7 +32,7 @@ func (c *Client) EditImage(ctx context.Context, req EditImageRequest) (*ImageRes
 
 	resp, err := c.HTTPClient.Do(httpReq)
 	if err != nil {
-		return nil, fmt.Errorf("failed to create request: %w", err)
+		return nil, fmt.Errorf("failed to execute request: %w", err)
 	}
 	defer resp.Body.Close()
 
