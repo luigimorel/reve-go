@@ -15,7 +15,7 @@ func TestCreateImage(t *testing.T) {
 		Image:            "a cute cat",
 		ContentViolation: false,
 		RequestID:        "req_123",
-		Version:          "v1",
+		Version:          "latest",
 		CreditsUsed:      655,
 		CreditsRemaining: 1,
 	}

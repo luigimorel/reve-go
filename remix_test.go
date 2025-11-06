@@ -10,9 +10,9 @@ import (
 	revego "github.com/luigimorel/reve-go"
 )
 
-func TestEditImage(t *testing.T) {
+func TestRemixImage(t *testing.T) {
 	expectedResponse := revego.ImageResponse{
-		Image:            "an edited cute cat",
+		Image:            "a remix of a cute cat with a hat",
 		ContentViolation: false,
 		RequestID:        "req_456",
 		Version:          "latest",
@@ -24,7 +24,7 @@ func TestEditImage(t *testing.T) {
 		if r.Method != http.MethodPost {
 			t.Errorf("expected POST, got %s", r.Method)
 		}
-		if r.URL.Path != "/image/edit" {
+		if r.URL.Path != "/image/remix" {
 			t.Errorf("unexpected path: %s", r.URL.Path)
 		}
 		if r.Header.Get("Authorization") != "Bearer "+TEST_API_KEY {
@@ -42,11 +42,14 @@ func TestEditImage(t *testing.T) {
 		HTTPClient: server.Client(),
 	}
 
-	resp, err := client.EditImage(context.Background(), revego.EditImageRequest{
-		EditInstruction: "Make the cat wear a hat",
-		ReferenceImage:  "base64encodedstring",
-		Version:         "v1",
-	})
+	req := revego.RemixImageRequest{
+		Prompt:          "a remix of a cute cat with a hat",
+		ReferenceImages: []string{"base64encodedimage1", "base64encodedimage2"},
+		AspectRatio:     "1:1",
+		Version:         "latest",
+	}
+
+	resp, err := client.RemixImage(context.Background(), req)
 	if err != nil {
 		t.Fatalf("expected no error, got %v", err)
 	}
