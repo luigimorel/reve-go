@@ -16,6 +16,8 @@ type RemixImageRequest struct {
 	Version         string   `json:"version"`
 }
 
+// Create images from a text description and reference images.
+// To learn more about the pricing for this endpoint, visit the pricing page.
 func (c *Client) RemixImage(ctx context.Context, req RemixImageRequest) (*ImageResponse, error) {
 	endpoint := c.APIBaseURL + "/image/remix"
 	b, err := json.Marshal(&req)

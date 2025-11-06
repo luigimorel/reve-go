@@ -24,6 +24,7 @@ type ImageResponse struct {
 	CreditsRemaining int    `json:"credits_remaining"`
 }
 
+// Create images from a text description. To learn more about the pricing for this endpoint, visit the pricing page.
 func (c *Client) CreateImage(ctx context.Context, req CreateImageRequest) (*ImageResponse, error) {
 	endpoint := c.APIBaseURL + "/image/create"
 	b, err := json.Marshal(&req)
