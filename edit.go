@@ -15,6 +15,7 @@ type EditImageRequest struct {
 	Version         string `json:"version"`
 }
 
+// Edit images based on a text description. To learn more about the pricing for this endpoint, visit the pricing page.
 func (c *Client) EditImage(ctx context.Context, req EditImageRequest) (*ImageResponse, error) {
 	endpoint := c.APIBaseURL + "/image/edit"
 	b, err := json.Marshal(&req)
