@@ -14,10 +14,8 @@ func (e *APIError) Error() string {
 	return fmt.Sprintf("reve api error: status=%d body=%s", e.StatusCode, e.Body)
 }
 
-func SetHeaders(req *http.Request, apiKey string) error {
+func SetHeaders(req *http.Request, apiKey string) {
 	req.Header.Set("Authorization", "Bearer "+apiKey)
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("Content-Type", "application/json")
-
-	return nil
 }
